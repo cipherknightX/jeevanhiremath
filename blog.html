@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeevan Hiremath</title>
+    <link rel="icon" type="image/png" href="images/favicon-32x32.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            height: 100%;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            color: #e8e8f0;
+            background-color: #0a0a12;
+            overflow-x: hidden;
+        }
+
+        /* Fixed Orb Background Layer */
+        .orb-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            background: radial-gradient(ellipse at center, #1a1a2e 0%, #0a0a12 100%);
+            overflow: hidden;
+        }
+
+        /* Orb Base */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0;
+            animation: fadeIn 2s ease-out forwards;
+        }
+
+        .orb-1 {
+            top: 15%;
+            left: 10%;
+            width: clamp(250px, 35vw, 500px);
+            height: clamp(250px, 35vw, 500px);
+            background: radial-gradient(circle, rgba(147, 112, 219, 0.25) 0%, rgba(147, 112, 219, 0) 70%);
+            animation: fadeIn 2s ease-out forwards, drift-1 25s ease-in-out infinite;
+        }
+
+        .orb-2 {
+            bottom: 20%;
+            right: 15%;
+            width: clamp(200px, 30vw, 450px);
+            height: clamp(200px, 30vw, 450px);
+            background: radial-gradient(circle, rgba(100, 149, 237, 0.2) 0%, rgba(100, 149, 237, 0) 70%);
+            animation: fadeIn 2.5s ease-out forwards, drift-2 30s ease-in-out infinite;
+            animation-delay: 0.3s;
+        }
+
+        .orb-3 {
+            top: 50%;
+            right: 25%;
+            width: clamp(150px, 25vw, 350px);
+            height: clamp(150px, 25vw, 350px);
+            background: radial-gradient(circle, rgba(219, 112, 147, 0.15) 0%, rgba(219, 112, 147, 0) 70%);
+            animation: fadeIn 3s ease-out forwards, drift-3 20s ease-in-out infinite;
+            animation-delay: 0.6s;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        @keyframes drift-1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -40px) scale(1.1); }
+            66% { transform: translate(-20px, 30px) scale(0.95); }
+        }
+
+        @keyframes drift-2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(-40px, 30px) scale(1.05); }
+            66% { transform: translate(25px, -35px) scale(0.98); }
+        }
+
+        @keyframes drift-3 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-30px, -30px) scale(1.08); }
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: clamp(20px, 3vw, 30px) clamp(20px, 5vw, 80px);
+            background: rgba(10, 10, 18, 0.4);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            font-weight: 500;
+            background: linear-gradient(135deg, #ffffff 0%, #a8a8b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: clamp(20px, 4vw, 40px);
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #b8b8c8;
+            text-decoration: none;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            transition: color 0.3s ease;
+            font-weight: 400;
+        }
+
+        .nav-links a:hover {
+            color: #ffffff;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Blog Header */
+        .blog-header {
+            position: relative;
+            z-index: 1;
+            padding: clamp(120px, 15vw, 180px) clamp(20px, 5vw, 80px) clamp(60px, 10vw, 100px);
+            text-align: center;
+        }
+
+        .blog-header h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 0%, #a8a8b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideUp 1s ease-out;
+        }
+
+        .blog-header p {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            font-weight: 300;
+            color: #b8b8c8;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+            animation: slideUp 1s ease-out 0.2s backwards;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Blog Content */
+        .blog-content {
+            position: relative;
+            z-index: 1;
+            padding: clamp(40px, 8vw, 80px) clamp(20px, 5vw, 80px);
+            background: rgba(10, 10, 18, 0.8);
+            backdrop-filter: blur(20px);
+        }
+
+        .blog-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Blog Post Cards */
+        .blog-posts {
+            display: grid;
+            gap: clamp(30px, 5vw, 50px);
+        }
+
+        .blog-post {
+            padding: clamp(30px, 5vw, 50px);
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .blog-post:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .post-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .post-date {
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
+            color: #8a8a9a;
+        }
+
+        .post-category {
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
+            color: #9b87d9;
+            padding: 4px 12px;
+            background: rgba(147, 112, 219, 0.1);
+            border-radius: 20px;
+            border: 1px solid rgba(147, 112, 219, 0.2);
+        }
+
+        .blog-post h2 {
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            font-weight: 400;
+            margin-bottom: 15px;
+            color: #ffffff;
+            line-height: 1.3;
+        }
+
+        .blog-post p {
+            font-size: clamp(0.95rem, 2vw, 1.1rem);
+            line-height: 1.7;
+            color: #b8b8c8;
+            margin-bottom: 20px;
+        }
+
+        .read-more {
+            display: inline-block;
+            color: #9b87d9;
+            text-decoration: none;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .read-more:hover {
+            color: #c4b0ff;
+            transform: translateX(5px);
+        }
+
+        .read-more::after {
+            content: ' →';
+        }
+
+        /* Coming Soon Message */
+        .coming-soon {
+            text-align: center;
+            padding: clamp(60px, 10vw, 100px) clamp(20px, 5vw, 40px);
+        }
+
+        .coming-soon h3 {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-weight: 300;
+            color: #b8b8c8;
+            margin-bottom: 15px;
+        }
+
+        .coming-soon p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: #8a8a9a;
+        }
+
+        /* Footer */
+        footer {
+            position: relative;
+            z-index: 1;
+            padding: clamp(30px, 5vw, 50px);
+            text-align: center;
+            background: rgba(10, 10, 18, 0.95);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        footer p {
+            color: #6a6a7a;
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .orb {
+                filter: blur(40px);
+            }
+
+            nav {
+                padding: 15px 20px;
+            }
+
+            .blog-header {
+                padding: 120px 20px 50px;
+            }
+
+            .blog-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .blog-header p {
+                font-size: 1.1rem;
+            }
+
+            .blog-content {
+                padding: 40px 20px;
+            }
+
+            .blog-post {
+                padding: 30px 20px;
+            }
+
+            .post-meta {
+                gap: 10px;
+            }
+
+            .blog-post h2 {
+                font-size: 1.5rem;
+            }
+
+            .blog-post p {
+                font-size: 1rem;
+            }
+
+            .coming-soon {
+                padding: 60px 20px;
+            }
+
+            .coming-soon h3 {
+                font-size: 1.5rem;
+            }
+
+            .coming-soon p {
+                font-size: 1rem;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: rgba(10, 10, 18, 0.98);
+                backdrop-filter: blur(20px);
+                padding: 20px;
+                gap: 15px;
+                display: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .orb-1, .orb-2, .orb-3 {
+                filter: blur(30px);
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .blog-header {
+                padding: 100px 18px 40px;
+            }
+
+            .blog-header h1 {
+                font-size: 2rem;
+            }
+
+            .blog-header p {
+                font-size: 1rem;
+            }
+
+            .blog-post {
+                padding: 25px 18px;
+                border-radius: 16px;
+            }
+
+            .blog-post h2 {
+                font-size: 1.3rem;
+            }
+
+            .blog-post p {
+                font-size: 0.95rem;
+            }
+
+            .post-date, .post-category {
+                font-size: 0.85rem;
+            }
+
+            .coming-soon h3 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-content">
+            <a href="index.html" class="logo">Jeevan Hiremath</a>
+            <button class="mobile-menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Fixed Orb Background -->
+    <div class="orb-container">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Blog Header -->
+    <div class="blog-header">
+        <h1>My Blog</h1>
+        <p>Project write-ups, technical insights and lessons learned across AI, systems, and web development.</p>
+    </div>
+
+    <!-- Blog Content -->
+    <div class="blog-content">
+        <div class="blog-container">
+            <div class="blog-posts">
+                <!-- Sample Blog Post 1 -->
+                <!-- <article class="blog-post">
+                    <div class="post-meta">
+                        <span class="post-date">October 8, 2025</span>
+                        <span class="post-category">Design</span>
+                    </div>
+                    <h2>The Art of Minimal Design</h2>
+                    <p>Exploring how less can truly be more in modern web design. Minimalism isn't just about removing elements—it's about intentional design choices that create elegance and clarity.</p>
+                    <a href="blog_files/blog1.html" class="read-more">Read more</a>
+                </article> -->
+
+
+                <!-- Coming Soon Section -->
+                <div class="coming-soon">
+                    <h3> No posts yet. The first blog is in preparation! ✨</h3>
+                    <!-- <p>I'm working on some exciting new content. Stay tuned for more articles about design, development, and creativity.</p> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Portfolio. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                    const navLinks = document.getElementById('navLinks');
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
