@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jeevan Hiremath</title>
-    <link rel="icon" type="image/png" href="../images/favicon-32x32.png">
+    <link rel="icon" type="image/png" href="favicon-32x32.png">
     <style>
         * {
             margin: 0;
@@ -347,7 +347,7 @@
 <body>
     <nav>
         <div class="nav-content">
-            <a href="../index.html#projects" class="back-button">
+            <a href="index.html#projects" class="back-button">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M19 12H5M12 19l-7-7 7-7"/>
                 </svg>
@@ -362,26 +362,26 @@
     </div>
 
     <div class="project-header">
-        <div class="project-category">Video Processing Utility</div>
-        <h1>Simple Video Summarizer</h1>
+        <div class="project-category">AI Persona Chatbot</div>
+        <h1>The Goggins Mindset Bot: Stay Hard</h1>
         
         <div class="project-meta">
             <div class="meta-item">
-                <span class="meta-label">Library</span>
-                <span class="meta-value">MoviePy</span>
+                <span class="meta-label">Model</span>
+                <span class="meta-value">Gemini 1.5 Pro</span>
             </div>
             <div class="meta-item">
-                <span class="meta-label">Language</span>
-                <span class="meta-value">Python</span>
+                <span class="meta-label">Framework</span>
+                <span class="meta-value">Flask</span>
             </div>
             <div class="meta-item">
-                <span class="meta-label">Function</span>
-                <span class="meta-value">Segmentation & Concatenation</span>
+                <span class="meta-label">Persona</span>
+                <span class="meta-value">David Goggins</span>
             </div>
         </div>
 
         <p class="project-description">
-            A Python utility to automatically create short summary videos from a longer source file. It uses the MoviePy library to extract evenly spaced segments and stitch them into a final highlight reel.
+            A brutal, no-excuses chat application built to coach users with the unfiltered intensity of David Goggins. It uses a custom system instruction to force the AI into an aggressive motivational persona.
         </p>
     </div>
 
@@ -389,37 +389,37 @@
         <div class="content-container">
             
             <div class="content-section">
-                <h2>Project Overview: The Highlight Reel</h2>
+                <h2>Project Purpose: Embrace the Suck</h2>
                 <p>
-                    The <b>Video Summarizer</b> is a practical command-line tool designed for quick video manipulation. It takes a single video file and automatically generates a shorter summary video of a specified duration. Instead of using complex algorithms, this tool takes a straightforward, deterministic approach: it extracts a set number of <b>evenly spaced segments</b> from the original video.
+                    This project uses the <b>Gemini 1.5 Pro</b> model to create an <b>extreme AI persona</b>. The goal was to break the typical "helpful" chatbot mold by injecting a detailed, aggressive <b>system instruction</b> forcing the AI to speak exactly like David Goggins—raw, unfiltered, and intensely motivational.
                 </p>
                 <p>
-                    This is handled by the <b>`VideoSummarizer`</b> class, which encapsulates all logic for loading the video, calculating segment timings, clipping the video, and compiling the final output using <b> MoviePy</b>.
+                    The application is a simple Flask web server that handles user input and sends it to the Gemini API. The key technical challenge solved was overriding the standard AI safety settings (`BLOCK_NONE` for most categories) to allow the aggressive and profane language required for the persona's authenticity.
                 </p>
             </div>
 
             <div class="content-section">
-                <h2>Key Steps & Logic</h2>
+                <h2>Core Components</h2>
                 <div class="features-grid">
                     <div class="feature-item">
-                        <div class="feature-icon">✂️</div>
-                        <h3>Segment Extraction</h3>
-                        <p>Calculates the optimal spacing interval and uses `video.subclipped()` to extract clips of a fixed duration across the video's timeline.</p>
+                        <div class="feature-icon">⚙️</div>
+                        <h3>Flask Backend</h3>
+                        <p>A minimal Python server managing the web routes (`/`, `/chat`) and handling API requests.</p>
                     </div>
                     <div class="feature-item">
-                        <div class="feature-icon">🔗</div>
-                        <h3>Dynamic Sizing</h3>
-                        <p>The total number of segments is dynamically adjusted if the source video is too short for the user's requested segment parameters.</p>
+                        <div class="feature-icon">🧠</div>
+                        <h3>System Instruction</h3>
+                        <p>A long, detailed prompt directing the Gemini model to adopt Goggins' tone, language, and ethos (e.g., "stay hard," "no excuses").</p>
                     </div>
                     <div class="feature-item">
-                        <div class="feature-icon">🎞️</div>
-                        <h3>Concatenation</h3>
-                        <p>Uses `moviepy.concatenate_videoclips()` to stitch the extracted segments together. Each segment's duration is adjusted to meet the final requested `summary_duration`.</p>
+                        <div class="feature-icon">🔓</div>
+                        <h3>Safety Override</h3>
+                        <p>Explicit configuration to disable AI safety settings for the persona's unfiltered, raw language to pass through.</p>
                     </div>
                     <div class="feature-item">
-                        <div class="feature-icon">🔊</div>
-                        <h3>Audio Handling</h3>
-                        <p>Attempts to seamlessly include the original video's audio, clipping it to match the final summary duration and attaching it to the final clip.</p>
+                        <div class="feature-icon">⚡</div>
+                        <h3>Gemini 1.5 Pro</h3>
+                        <p>Used for its superior instruction-following capability to maintain the intense persona across all responses.</p>
                     </div>
                 </div>
             </div>
@@ -428,22 +428,31 @@
                 <h2>Technology Stack</h2>
                 <div class="tech-stack">
                     <span class="tech-tag">Python</span>
-                    <span class="tech-tag">MoviePy</span>
-                    <span class="tech-tag">FFmpeg (Dependency)</span>
-                    <span class="tech-tag">OOP (Class-based structure)</span>
+                    <span class="tech-tag">Flask</span>
+                    <span class="tech-tag">Google Gemini API</span>
+                    <span class="tech-tag">HTML/CSS</span>
+                    <span class="tech-tag">JSON/AJAX</span>
                 </div>
             </div>
             
             <div class="content-section">
                 <h2>Links</h2>
                 <div class="project-links">
-                    <a href="https://github.com/cipherknightX/video-summary/blob/main/main.py"  target="_blank" class="project-link">
+                    <a href="https://github.com/cipherknightX/python_projects/tree/main/david_goggins" target="_blank" class="project-link">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                         </svg>
                         View on GitHub
                     </a>
-                    </div>
+                    <!-- <a href="#" class="project-link">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                            <polyline points="15 3 21 3 21 9"/>
+                            <line x1="10" y1="14" x2="21" y2="3"/>
+                        </svg>
+                        Live Demo
+                    </a> -->
+                </div>
             </div>
 
         </div>
